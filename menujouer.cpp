@@ -2,31 +2,31 @@
 
 void menuJouer_keyUp(Menu &bouton1, Menu &bouton2, Menu &bouton3, Menu &bouton4, Color const &btnBord1, Color const &btnFen1, int &i){
   if (i == 0){
-    bouton1.setCouleurBordure(bouton4.getCouleurBordure());
-    bouton1.setCouleurFenetre(bouton4.getCouleurFenetre());
-    bouton4.setCouleurBordure(btnBord1);
-    bouton4.setCouleurFenetre(btnFen1);
+    bouton1.setCouleurBordMenu(bouton4.getCouleurBordMenu());
+    bouton1.setCouleurFntMenu(bouton4.getCouleurFntMenu());
+    bouton4.setCouleurBordMenu(btnBord1);
+    bouton4.setCouleurFntMenu(btnFen1);
     i = 3;
   }
   else if(i == 1){
-    bouton2.setCouleurBordure(bouton1.getCouleurBordure());
-    bouton2.setCouleurFenetre(bouton1.getCouleurFenetre());
-    bouton1.setCouleurBordure(btnBord1);
-    bouton1.setCouleurFenetre(btnFen1);
+    bouton2.setCouleurBordMenu(bouton1.getCouleurBordMenu());
+    bouton2.setCouleurFntMenu(bouton1.getCouleurFntMenu());
+    bouton1.setCouleurBordMenu(btnBord1);
+    bouton1.setCouleurFntMenu(btnFen1);
     i--;
   }
   else if(i == 2){
-    bouton3.setCouleurBordure(bouton2.getCouleurBordure());
-    bouton3.setCouleurFenetre(bouton2.getCouleurFenetre());
-    bouton2.setCouleurBordure(btnBord1);
-    bouton2.setCouleurFenetre(btnFen1);
+    bouton3.setCouleurBordMenu(bouton2.getCouleurBordMenu());
+    bouton3.setCouleurFntMenu(bouton2.getCouleurFntMenu());
+    bouton2.setCouleurBordMenu(btnBord1);
+    bouton2.setCouleurFntMenu(btnFen1);
     i--;  
   }
   else{
-    bouton4.setCouleurBordure(bouton3.getCouleurBordure());
-    bouton4.setCouleurFenetre(bouton3.getCouleurFenetre());
-    bouton3.setCouleurBordure(btnBord1);
-    bouton3.setCouleurFenetre(btnFen1);
+    bouton4.setCouleurBordMenu(bouton3.getCouleurBordMenu());
+    bouton4.setCouleurFntMenu(bouton3.getCouleurFntMenu());
+    bouton3.setCouleurBordMenu(btnBord1);
+    bouton3.setCouleurFntMenu(btnFen1);
     i--;
   } 
 }
@@ -34,44 +34,44 @@ void menuJouer_keyUp(Menu &bouton1, Menu &bouton2, Menu &bouton3, Menu &bouton4,
 void menuJouer_keyDown(Menu &bouton1, Menu &bouton2, Menu &bouton3, Menu &bouton4, Color const &btnBord1, Color const &btnFen1, int &i){
   if (i == 0)
   {
-    bouton1.setCouleurBordure(bouton2.getCouleurBordure());
-    bouton1.setCouleurFenetre(bouton2.getCouleurFenetre());
-    bouton2.setCouleurBordure(btnBord1);
-    bouton2.setCouleurFenetre(btnFen1);
+    bouton1.setCouleurBordMenu(bouton2.getCouleurBordMenu());
+    bouton1.setCouleurFntMenu(bouton2.getCouleurFntMenu());
+    bouton2.setCouleurBordMenu(btnBord1);
+    bouton2.setCouleurFntMenu(btnFen1);
     i++;
   }
   else if(i == 1){
-    bouton2.setCouleurBordure(bouton3.getCouleurBordure());
-    bouton2.setCouleurFenetre(bouton3.getCouleurFenetre());
-    bouton3.setCouleurBordure(btnBord1);
-    bouton3.setCouleurFenetre(btnFen1);
+    bouton2.setCouleurBordMenu(bouton3.getCouleurBordMenu());
+    bouton2.setCouleurFntMenu(bouton3.getCouleurFntMenu());
+    bouton3.setCouleurBordMenu(btnBord1);
+    bouton3.setCouleurFntMenu(btnFen1);
     i++;
   }
   else if(i == 2){
-    bouton3.setCouleurBordure(bouton4.getCouleurBordure());
-    bouton3.setCouleurFenetre(bouton4.getCouleurFenetre());
-    bouton4.setCouleurBordure(btnBord1);
-    bouton4.setCouleurFenetre(btnFen1);
+    bouton3.setCouleurBordMenu(bouton4.getCouleurBordMenu());
+    bouton3.setCouleurFntMenu(bouton4.getCouleurFntMenu());
+    bouton4.setCouleurBordMenu(btnBord1);
+    bouton4.setCouleurFntMenu(btnFen1);
     i++;  
   }
   else{
-    bouton4.setCouleurBordure(bouton1.getCouleurBordure());
-    bouton4.setCouleurFenetre(bouton1.getCouleurFenetre());
-    bouton1.setCouleurBordure(btnBord1);
-    bouton1.setCouleurFenetre(btnFen1);
+    bouton4.setCouleurBordMenu(bouton1.getCouleurBordMenu());
+    bouton4.setCouleurFntMenu(bouton1.getCouleurFntMenu());
+    bouton1.setCouleurBordMenu(btnBord1);
+    bouton1.setCouleurFntMenu(btnFen1);
     i = 0;
   }
 }
 
 void boutonJouer(Menu &bouton1, Menu &bouton2, Menu &bouton3, Menu &bouton4){
-  bouton1.setCouleurBordure(BGREEN);
-  bouton1.setCouleurFenetre(WBLUE);
-  bouton2.setCouleurBordure(BRED);
-  bouton2.setCouleurFenetre(BYELLOW);
-  bouton3.setCouleurBordure(BRED);
-  bouton3.setCouleurFenetre(BYELLOW);
-  bouton4.setCouleurBordure(BRED);
-  bouton4.setCouleurFenetre(BYELLOW);
+  bouton1.setCouleurBordMenu(BGREEN);
+  bouton1.setCouleurFntMenu(WBLUE);
+  bouton2.setCouleurBordMenu(BRED);
+  bouton2.setCouleurFntMenu(BYELLOW);
+  bouton3.setCouleurBordMenu(BRED);
+  bouton3.setCouleurFntMenu(BYELLOW);
+  bouton4.setCouleurBordMenu(BRED);
+  bouton4.setCouleurFntMenu(BYELLOW);
 }
 
 void menuJouer(){
@@ -85,10 +85,10 @@ void menuJouer(){
 	boutonJouer(JcJ,JcIA,IAcIA,backMenuPrinc);
 
 
-  Color const tmp = JcJ.getCouleurBordure(), tmp2 = JcJ.getCouleurFenetre();
+  Color const tmp = JcJ.getCouleurBordMenu(), tmp2 = JcJ.getCouleurFntMenu();
   
 
-  while(((ch = getch()) != '\n') || (backMenuPrinc.getCouleurBordure() != tmp))
+  while(((ch = getch()) != '\n') || (backMenuPrinc.getCouleurBordMenu() != tmp))
   {
 
     switch (ch) {
@@ -112,11 +112,11 @@ void menuJouer(){
   			menuJouer_keyDown(JcJ, JcIA, IAcIA, backMenuPrinc, tmp, tmp2, i);
   		break;
       case '\n':
-        if (JcJ.getCouleurBordure() == tmp)
+        if (JcJ.getCouleurBordMenu() == tmp)
         {
 
         }
-        else if (JcIA.getCouleurBordure() == tmp )
+        else if (JcIA.getCouleurBordMenu() == tmp )
         {
           clearTerm();
           jeuJcIA();

@@ -14,7 +14,7 @@ public:
 	~Navire();
 
   	void print(WINDOW* Win, int x, int y, char s, Color c) const;
-
+	void printChanger(WINDOW* Win, int x, int y) const;
 	
 };
 #endif

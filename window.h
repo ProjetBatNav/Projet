@@ -36,7 +36,7 @@ void clearTerm();
 // int souris_getpos(int *x, int *y, int *bouton);
 
 class Window {
- protected:
+ private:
   int height,width,startx,starty;
   WINDOW* win, *frame;
   Color colorwin, colorframe;
