@@ -7,14 +7,19 @@ class Navire
 {
 private:
 	int m_hauteur, m_largeur, m_startX, m_startY;
+	char m_spr;
 	Color m_navColor;
 
 public:
-	Navire(WINDOW* win, int h, int l, int x, int y, Color c);
+	Navire(WINDOW* Win, int h, int l, int x, int y, Color c);
 	~Navire();
 
-  	void print(WINDOW* Win, int x, int y, char s, Color c) const;
-	void printChanger(WINDOW* Win, int x, int y) const;
-	
+	int getStartX() const;
+	int getStartY() const;
+
+  	void print(WINDOW* Win, int x, int y, Color c) const;
+  	void printNavVerti(WINDOW* Win, int x, int y, Color c) const;
+  	void printNavHori(WINDOW* Win, int x, int y, Color c) const;
+  	void mvNav(WINDOW* Win, int ch, std::string mode, Color c);
 };
 #endif

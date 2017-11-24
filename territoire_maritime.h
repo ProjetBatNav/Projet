@@ -1,16 +1,24 @@
 #ifndef TERRITOIRE_MARITIME_H
 #define TERRITOIRE_MARITIME_H
 
+#include "fenetre_de_jeu.h"
 #include "window.h"
 
 class terrM
 {
  private:
-  Window m_terr;
+ 	int m_hauteur, m_largeur, m_startX, m_startY;
+  	fntJeu m_terr;
 public:
-	terrM(int h, int w, int x, int y);
+	terrM(int h, int l, int x, int y);
 	~terrM();
+
 	WINDOW* getWindowWinTerr() const;
-	
+	Color getCouleurFenetreTerr() const;
+
+	void print(WINDOW* Win, int x, int y, char s) const;
+	void printGrille(WINDOW* Win) const;
+
+	// void update() const;
 };
 #endif

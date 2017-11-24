@@ -3,13 +3,17 @@
 
 #include "window.h"
 
-class fntJeu : public Window
+class fntJeu
 {
 private:
+	Window m_fnt;
 
 public:
 	fntJeu(int h, int w, int x, int y);
 	~fntJeu();
+
+	WINDOW* getWindowWinFnt() const;
+	Color getCouleurFenetreFnt() const;
 };
 
 #endif
