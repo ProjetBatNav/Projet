@@ -2,7 +2,7 @@
 
 terrM::terrM(int h, int l, int x, int y)
 : m_hauteur(h), m_largeur(l), m_startX(x), m_startY(y), m_terr(h,l,x,y) {
-	printGrille(getWindowWinTerr());
+	printGrille();
 }
 
 terrM::~terrM(){}
@@ -21,7 +21,7 @@ void terrM::print(WINDOW* Win, int x, int y, char s) const{
   refresh();  
 }
 
-void terrM::printGrille(WINDOW* Win) const{
+void terrM::printGrille() const{
 	int H = m_hauteur;
 	int L = m_largeur;
 
@@ -31,20 +31,20 @@ void terrM::printGrille(WINDOW* Win) const{
 		{
 			for (int j = 0; j < H; ++j)
 			{
-			print(Win,i,j,'|');
+			print(getWindowWinTerr(),i,j,'|');
 			}
 		}
 		else{
 			for (int j = 0; j < H; ++j)
 			{
-			print(Win,i,j,'_');
+			print(getWindowWinTerr(),i,j,'_');
 			}
 		}
 		
 	}
 }
 
-// void update() const{
-// 	wrefresh(Win);
-//   	refresh(); 
-// }
+void terrM::update() const{
+	wrefresh(getWindowWinTerr());
+  	refresh(); 
+}

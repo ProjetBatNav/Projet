@@ -12,19 +12,28 @@ void jeuJcIA(){
   	switch(ch){
   		case KEY_UP :
   			destroyer.mvNav(joueur.getWindowWinTerr(),ch,"10x10",joueur.getCouleurFenetreTerr());
-  			// joueur.update();
+  			joueur.printGrille();
+        destroyer.printNavVerti(joueur.getWindowWinTerr(),destroyer.getStartX(),destroyer.getStartY(),destroyer.getNavColor());
   		break;
   		case KEY_DOWN :
   			destroyer.mvNav(joueur.getWindowWinTerr(),ch,"10x10",joueur.getCouleurFenetreTerr());
+        joueur.update();
+        // joueur.printGrille();
   		break;
   		case KEY_LEFT :
   			destroyer.mvNav(joueur.getWindowWinTerr(),ch,"10x10",joueur.getCouleurFenetreTerr());
+        joueur.update();
+        // joueur.printGrille();
   		break;
   		case KEY_RIGHT :
   			destroyer.mvNav(joueur.getWindowWinTerr(),ch,"10x10",joueur.getCouleurFenetreTerr());
+        joueur.update();
+        // joueur.printGrille();
   		break;
   		case 32 :
   			destroyer.mvNav(joueur.getWindowWinTerr(),ch,"10x10",joueur.getCouleurFenetreTerr());
+        joueur.update();
+        // joueur.printGrille();
   		break;
   	}
   }

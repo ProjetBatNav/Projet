@@ -4,18 +4,6 @@ Navire::Navire(WINDOW* Win, int h, int l, int x, int y, Color c)
 : m_hauteur(h), m_largeur(l), m_startX(x), m_startY(y), m_navColor(c) {
         char s = ' ';
         m_spr = s;
-	// int i, j, X = x;
-
-	// for (i = 0; i < h ; ++i)
-	// {
-	// 	for (j = 0; j < l; ++j)
-	// 	{
-	// 	  print(Win,X,y,c);
-	// 	  X++;
-	// 	}
-	// 	X = x;
-	// 	y++;
-	// }
         printNavVerti(Win,x,y,c);
 }
 
@@ -26,6 +14,9 @@ int Navire::getStartX() const{
 }
 int Navire::getStartY() const{
 	return m_startY;
+}
+Color Navire::getNavColor() const{
+	return m_navColor;
 }
 
 void Navire::print(WINDOW* Win, int x, int y, Color c) const{

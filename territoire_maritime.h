@@ -17,8 +17,8 @@ public:
 	Color getCouleurFenetreTerr() const;
 
 	void print(WINDOW* Win, int x, int y, char s) const;
-	void printGrille(WINDOW* Win) const;
+	void printGrille() const;
 
-	// void update() const;
+	void update() const;
 };
 #endif

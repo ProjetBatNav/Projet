@@ -16,6 +16,7 @@ public:
 
 	int getStartX() const;
 	int getStartY() const;
+	Color getNavColor() const;
 
   	void print(WINDOW* Win, int x, int y, Color c) const;
   	void printNavVerti(WINDOW* Win, int x, int y, Color c) const;
