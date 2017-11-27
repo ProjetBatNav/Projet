@@ -12,3 +12,11 @@ WINDOW* fntJeu::getWindowWinFnt() const{
 Color fntJeu::getCouleurFenetreFnt() const{
 	return m_fnt.getCouleurFenetre();
 }
+
+void fntJeu::setCouleurFenetreFnt(Color c){
+	m_fnt.setCouleurFenetre(c);
+}
+
+void fntJeu::setCouleurBordureFnt(Color c){
+	m_fnt.setCouleurBordure(c);
+}

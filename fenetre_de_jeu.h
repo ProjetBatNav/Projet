@@ -14,6 +14,9 @@ public:
 
 	WINDOW* getWindowWinFnt() const;
 	Color getCouleurFenetreFnt() const;
+
+	void setCouleurFenetreFnt(Color c);
+	void setCouleurBordureFnt(Color c);
 };
 
 #endif

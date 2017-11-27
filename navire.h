@@ -22,6 +22,6 @@ public:
   	void print(WINDOW* Win, int x, int y, char s) const;
   	void printNav(WINDOW* Win, int x, int y, Color c) const;
   	void printNavGrille(WINDOW* Win, int x, int y) const;
-  	void mvNav(WINDOW* Win, int ch, std::string mode);
+  	void mvNav(WINDOW* Win, int ch, std::string mode, Color c);
 };
 #endif
