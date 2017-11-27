@@ -52,7 +52,7 @@ void terrM::printGrille(std::string mode) const{
 				}
 			}
 			else{
-				for (int j = 0; j < m_hauteur; ++j)
+				for (int j = 1; j < m_hauteur; j += 2)
 				{
 				print(getWindowWinTerr(),i,j,'_');
 				}

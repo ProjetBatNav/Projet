@@ -51,7 +51,7 @@ void Navire::printNav(WINDOW* Win, int x, int y, Color c) const{
 void Navire::printNavGrille(WINDOW* Win, int x, int y) const{
 	int Y = y;
 	
-	for(int i = 0; i < m_largeur; i++){
+	for(int i = 1; i <= m_largeur; i++){
 		if (m_hauteur > m_largeur)
 		{
 			for (int j = 0; j < m_hauteur; ++j)
@@ -63,7 +63,7 @@ void Navire::printNavGrille(WINDOW* Win, int x, int y) const{
 			x++;
 		}
 		else{
-			if(i == 0 || i%3 != 0){
+			if(i%3 != 0){
 				for (int j = 0; j < m_hauteur; ++j)
 				{
 				print(Win,x,Y,'_');
@@ -86,11 +86,8 @@ void Navire::printNavGrille(WINDOW* Win, int x, int y) const{
 }
 
 void Navire::mvNav(WINDOW* Win, int ch, std::string mode){
-	// if (mode == "20x20")
-	// {
-	// 	m_hauteur *= 2;
-	// 	m_largeur *= 2; 
-	// }
+	int const H = m_hauteur, L = m_largeur;
+
 	switch(ch){
 		case KEY_UP :
 			if(mode == "10x10"){
@@ -127,7 +124,7 @@ void Navire::mvNav(WINDOW* Win, int ch, std::string mode){
 			else
 			{
 				printNavGrille(Win,m_startX,m_startY);
-				m_startX -= 4;
+				m_startX -= 5;
 				printNav(Win,m_startX,m_startY,m_navColor);
 			}
 		break;
@@ -140,24 +137,46 @@ void Navire::mvNav(WINDOW* Win, int ch, std::string mode){
 			else
 			{
 				printNavGrille(Win,m_startX,m_startY);
-				m_startX += 4;
+				m_startX += 5;
 				printNav(Win,m_startX,m_startY,m_navColor);
 			}
 		break;
 		case 32 :
-			if(m_largeur > m_hauteur){
-				printNavGrille(Win,m_startX,m_startY);
-				int largeur = m_largeur;
-				m_largeur = 2*m_hauteur;
-				m_hauteur = largeur/2;
-				printNav(Win,m_startX,m_startY,m_navColor);		
+			if(mode == "10x10"){
+				if(m_largeur > m_hauteur){
+					printNavGrille(Win,m_startX,m_startY);
+					int largeur = m_largeur;
+					m_largeur = 2*m_hauteur;
+					m_hauteur = largeur/2-2;
+					m_startX += (3*m_hauteur/2);
+					m_startY -= (m_hauteur/2);
+					printNav(Win,m_startX,m_startY,m_navColor);		
+				}
+				else{
+					printNavGrille(Win,m_startX,m_startY);
+					int largeur = m_largeur, hauteur = m_hauteur;
+					m_largeur = 3*m_hauteur-1;
+					m_hauteur = largeur/2;
+					m_startX -= (3*hauteur/2);
+					m_startY += (hauteur/2);
+					printNav(Win,m_startX,m_startY,m_navColor);
+				}
 			}
 			else{
-				printNavGrille(Win,m_startX,m_startY);
-				int largeur = m_largeur;
-				m_largeur = 2*m_hauteur;
-				m_hauteur = largeur/2;
-				printNav(Win,m_startX,m_startY,m_navColor);
+				if(m_largeur > m_hauteur){
+					printNavGrille(Win,m_startX,m_startY);
+					int largeur = m_largeur;
+					m_largeur = 2*m_hauteur;
+					m_hauteur = largeur/2;
+					printNav(Win,m_startX,m_startY,m_navColor);		
+				}
+				else{
+					printNavGrille(Win,m_startX,m_startY);
+					int largeur = m_largeur;
+					m_largeur = 2*m_hauteur;
+					m_hauteur = largeur/2;
+					printNav(Win,m_startX,m_startY,m_navColor);
+				}
 			}
 		break;
 	}
