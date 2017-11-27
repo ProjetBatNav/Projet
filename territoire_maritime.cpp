@@ -1,8 +1,8 @@
 #include "territoire_maritime.h"
 
-terrM::terrM(int h, int l, int x, int y)
-: m_hauteur(h), m_largeur(l), m_startX(x), m_startY(y), m_terr(h,l,x,y) {
-	printGrille();
+terrM::terrM(int h, int l, int x, int y, std::string mode)
+: m_hauteur(h), m_largeur(l), m_startX(x), m_startY(y), m_mode(mode), m_terr(h,l,x,y) {
+	printGrille(mode);
 }
 
 terrM::~terrM(){}
@@ -21,26 +21,43 @@ void terrM::print(WINDOW* Win, int x, int y, char s) const{
   refresh();  
 }
 
-void terrM::printGrille() const{
-	int H = m_hauteur;
-	int L = m_largeur;
-
-	for (int i = 0; i < L; ++i)
+void terrM::printGrille(std::string mode) const{
+	if (mode == "10x10")
 	{
-		if (i%2 == 0)
+		for (int i = 0; i < m_largeur; ++i)
 		{
-			for (int j = 0; j < H; ++j)
+			if (i%3 == 0)
 			{
-			print(getWindowWinTerr(),i,j,'|');
+				for (int j = 0; j < m_hauteur; ++j)
+				{
+				print(getWindowWinTerr(),i,j,'|');
+				}
+			}
+			else{
+				for (int j = 0; j < m_hauteur; ++j)
+				{
+				print(getWindowWinTerr(),i,j,'_');
+				}
 			}
 		}
-		else{
-			for (int j = 0; j < H; ++j)
+	}
+	else{
+		for (int i = 0; i < m_largeur; ++i)
+		{
+			if (i%5 == 0)
 			{
-			print(getWindowWinTerr(),i,j,'_');
+				for (int j = 0; j < m_hauteur; ++j)
+				{
+				print(getWindowWinTerr(),i,j,'|');
+				}
+			}
+			else{
+				for (int j = 0; j < m_hauteur; ++j)
+				{
+				print(getWindowWinTerr(),i,j,'_');
+				}
 			}
 		}
-		
 	}
 }
 

@@ -8,16 +8,17 @@ class terrM
 {
  private:
  	int m_hauteur, m_largeur, m_startX, m_startY;
+ 	std::string m_mode;
   	fntJeu m_terr;
 public:
-	terrM(int h, int l, int x, int y);
+	terrM(int h, int l, int x, int y, std::string mode = "10x10");
 	~terrM();
 
 	WINDOW* getWindowWinTerr() const;
 	Color getCouleurFenetreTerr() const;
 
 	void print(WINDOW* Win, int x, int y, char s) const;
-	void printGrille() const;
+	void printGrille(std::string mode) const;
 
 	void update() const;
 };

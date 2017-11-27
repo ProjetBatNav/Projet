@@ -19,8 +19,9 @@ public:
 	Color getNavColor() const;
 
   	void print(WINDOW* Win, int x, int y, Color c) const;
-  	void printNavVerti(WINDOW* Win, int x, int y, Color c) const;
-  	void printNavHori(WINDOW* Win, int x, int y, Color c) const;
-  	void mvNav(WINDOW* Win, int ch, std::string mode, Color c);
+  	void print(WINDOW* Win, int x, int y, char s) const;
+  	void printNav(WINDOW* Win, int x, int y, Color c) const;
+  	void printNavGrille(WINDOW* Win, int x, int y) const;
+  	void mvNav(WINDOW* Win, int ch, std::string mode);
 };
 #endif
