@@ -16,6 +16,6 @@ void menuJouer_keyDown(Menu &bouton1, Menu &bouton2, Menu &bouton3, Menu &bouton
 void boutonJouer(Menu &bouton1, Menu &bouton2, Menu &bouton3, Menu &bouton4);
 
 //Fonction qui execute le menu jouer.
-void menuJouer();
+void menuJouer(std::string &mode);
 
 #endif

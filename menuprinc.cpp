@@ -62,6 +62,7 @@ void boutonPrinc(Menu &bouton1, Menu &bouton2, Menu &bouton3){
 void menuPrinc(){
   int sourisX, sourisY, bouton, ch, i=0;
   int h=5,w=COLS/3;
+  std::string mode;
   
   Menu jouer(h,w,COLS/3,LINES/8+1, "JOUER");
   Menu options(h,w,COLS/3,3*LINES/8+1, "OPTIONS");
@@ -99,7 +100,7 @@ void menuPrinc(){
           if (jouer.getCouleurBordMenu() == tmp)
           {
             clearTerm();
-            menuJouer();
+            menuJouer(mode);
             clearTerm();
             boutonPrinc(jouer, options, quitter);
             i = 0;
@@ -107,7 +108,10 @@ void menuPrinc(){
           else if (options.getCouleurBordMenu() == tmp )
           {
             clearTerm();
-            Options();
+            Options(mode);
+            clearTerm();
+            boutonPrinc(jouer, options, quitter);
+            i = 0;
           }
         break;
       }

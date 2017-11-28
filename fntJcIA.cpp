@@ -1,6 +1,6 @@
 #include "fntJcIA.h"
 
-void jeuJcIA(){
+void jeuJcIA(std::string &mode){
 	int ch;
 	terrM joueur(20,40,10,7);
 	terrM IA(20,40,111,7);

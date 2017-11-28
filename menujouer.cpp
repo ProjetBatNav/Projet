@@ -74,7 +74,7 @@ void boutonJouer(Menu &bouton1, Menu &bouton2, Menu &bouton3, Menu &bouton4){
   bouton4.setCouleurFntMenu(BYELLOW);
 }
 
-void menuJouer(){
+void menuJouer(std::string &mode){
   int h=5, w=COLS/3, i=0, ch;
 	Menu JcJ(h,w,COLS/3,7, "JOUEUR VS JOUEUR");
   // JcJ.upDatePrint(11,1);
@@ -119,7 +119,7 @@ void menuJouer(){
         else if (JcIA.getCouleurBordMenu() == tmp )
         {
           clearTerm();
-          jeuJcIA();
+          jeuJcIA(mode);
           clearTerm();
           boutonJouer(JcJ,JcIA,IAcIA,backMenuPrinc);
           i = 0;

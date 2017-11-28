@@ -6,6 +6,6 @@
 #include "territoire_maritime.h"
 #include "navire.h"
 
-void jeuJcIA();
+void jeuJcIA(std::string &mode);
 
 #endif
