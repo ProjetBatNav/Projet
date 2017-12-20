@@ -12,6 +12,10 @@ public:
 	fntJeu(int h, int w, int x, int y);
 	~fntJeu();
 
+	int getStartX();
+	int getStartY();
+	int getHauteur();
+	int getLargeur();
 	WINDOW* getWindowWinFnt() const;
 	Color getCouleurFenetreFnt() const;
 

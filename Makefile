@@ -2,7 +2,7 @@ CC = g++
 CFLAGS = -Wall -ansi
 PROG_NAME = prog
 SOURCE = main.cpp menuprinc.cpp menujouer.cpp menuoptions.cpp window.cpp navire.cpp territoire_maritime.cpp \
-fenetre_de_jeu.cpp message.cpp menu.cpp score.cpp joueur.cpp fntJcIA.cpp
+fenetre_de_jeu.cpp message.cpp menu.cpp score.cpp joueur.cpp fntJcIA.cpp cellule.cpp
 FICHIER1 = main
 FICHIER2 = menuprinc
 FICHIER3 = menujouer
@@ -16,6 +16,7 @@ FICHIER10 = menu
 FICHIER11 = score
 FICHIER12 = joueur
 FICHIER13 = fntJcIA
+FICHIER14 = cellule
 
 all : $(PROG_NAME)
 
@@ -57,6 +58,10 @@ $(FICHIER12).o : $(FICHIER12).cpp $(FICHIER12).h
 
 $(FICHIER13).o : $(FICHIER13).cpp $(FICHIER13).h
 	$(CC) -c $(FICHIER13).cpp $(CFLAGS)
+
+$(FICHIER14).o : $(FICHIER14).cpp $(FICHIER14).h
+	$(CC) -c $(FICHIER14).cpp $(CFLAGS)
+
 
 $(PROG_NAME) : $(SOURCE:.c=.o)
 	$(CC) $(SOURCE:.c=.o) -o $(PROG_NAME) -lncurses
