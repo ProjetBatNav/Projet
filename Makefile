@@ -1,8 +1,10 @@
 CC = g++
 CFLAGS = -Wall -ansi
 PROG_NAME = prog
+
 SOURCE = main.cpp menuprinc.cpp menujouer.cpp menuoptions.cpp window.cpp navire.cpp territoire_maritime.cpp \
 fenetre_de_jeu.cpp message.cpp menu.cpp score.cpp joueur.cpp fntJcIA.cpp cellule.cpp
+
 FICHIER1 = main
 FICHIER2 = menuprinc
 FICHIER3 = menujouer

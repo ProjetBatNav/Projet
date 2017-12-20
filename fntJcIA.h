@@ -7,6 +7,7 @@
 #include "navire.h"
 #include "joueur.h"
 #include "cellule.h"
+#include "message.h"
 
 void jeuJcIA(std::string &mode);
 

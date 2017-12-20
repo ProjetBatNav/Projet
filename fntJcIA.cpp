@@ -8,6 +8,7 @@ void jeuJcIA(std::string &mode){
   fntJeu flotte(5,50,5,34);
 	Menu titreJoueur(3,30,15,1,"Votre Territoire");
   Menu titreIA(3,30,116,1,"Territoire Adverse");
+
   Navire destroyer("destroyer",-2,0,BMAGENTA);
   Navire croiseur("croiseur",8,0,BGREEN);
   Navire contreTorpilleur("contreTorpilleur",18,0,BYELLOW);
@@ -18,6 +19,11 @@ void jeuJcIA(std::string &mode){
   contreTorpilleur.print(flotte.getWindowWinFnt());
   sousMarin.print(flotte.getWindowWinFnt());
   torpilleur.print(flotte.getWindowWinFnt());
+  
+  Message Messombre(5,100,62,36);
+  Messombre.setCouleurFenetre(WYELLOW);
+  Message Mess(5,100,60,35);
+  Mess.print(2,1,"Wallah j'incrément bro ! IIIIIIIIIIII IIIIIIIIII IIIIIIIIIIIIII IIIIIIIIIIIIIIIIIIIIII IIIIIIIIIIIIIIIIIIIIII IIIIIIIIJJJJJJJJJ IJIJIJIJIJIJIJIJIJIJIJIJ EXCELLENT");
 
 	
   while(((ch = getch()) != '\n'))
