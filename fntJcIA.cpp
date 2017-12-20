@@ -12,6 +12,10 @@ void jeuJcIA(std::string &mode){
   Navire contreTorpilleur(flotte.getWindowWinFnt(),3,2,5,0,BYELLOW);
   Navire sousMarin(flotte.getWindowWinFnt(),3,2,7,0,BGREEN);
   Navire torpilleur(flotte.getWindowWinFnt(),2,2,9,0,BMAGENTA);
+  Message Messombre(5,100,62,36);
+  Messombre.setCouleurFenetre(WYELLOW);
+  Message Mess(5,100,60,35);
+  Mess.print(2,1,"Wallah j'incrément bro ! IIIIIIIIIIII IIIIIIIIII IIIIIIIIIIIIII IIIIIIIIIIIIIIIIIIIIII IIIIIIIIIIIIIIIIIIIIII IIIIIIIIJJJJJJJJJ IJIJIJIJIJIJIJIJIJIJIJIJ EXCELLENT");
 
 	while(((ch = getch()) != '\n'))
   {

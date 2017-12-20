@@ -5,6 +5,7 @@
 #include "menu.h"
 #include "territoire_maritime.h"
 #include "navire.h"
+#include "message.h"
 
 void jeuJcIA(std::string &mode);
 

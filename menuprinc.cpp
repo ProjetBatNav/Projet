@@ -105,14 +105,14 @@ void menuPrinc(){
             boutonPrinc(jouer, options, quitter);
             i = 0;
           }
-          else if (options.getCouleurBordMenu() == tmp )
+         /* else if (options.getCouleurBordMenu() == tmp )
           {
             clearTerm();
             Options(mode);
             clearTerm();
             boutonPrinc(jouer, options, quitter);
             i = 0;
-          }
+          }*/
         break;
       }
   }

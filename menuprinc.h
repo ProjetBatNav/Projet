@@ -3,7 +3,7 @@
 
 #include "menu.h"
 #include "menujouer.h"
-#include "menuoptions.h"
+// #include "menuoptions.h"
 
 //Fonction qui permet de changer la couleur de la bordure et de la fenetre en fonction \
 de KEY_UP.

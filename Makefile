@@ -1,12 +1,12 @@
 CC = g++
 CFLAGS = -Wall -ansi
 PROG_NAME = prog
-SOURCE = main.cpp menuprinc.cpp menujouer.cpp menuoptions.cpp window.cpp navire.cpp territoire_maritime.cpp \
+SOURCE = main.cpp menuprinc.cpp menujouer.cpp window.cpp navire.cpp territoire_maritime.cpp \
 fenetre_de_jeu.cpp message.cpp menu.cpp score.cpp joueur.cpp fntJcIA.cpp
 FICHIER1 = main
 FICHIER2 = menuprinc
 FICHIER3 = menujouer
-FICHIER4 = menuoptions
+
 FICHIER5 = window
 FICHIER6 = navire
 FICHIER7 = territoire_maritime
@@ -27,9 +27,6 @@ $(FICHIER2).o : $(FICHIER2).cpp $(FICHIER2).h
 
 $(FICHIER3).o : $(FICHIER3).cpp $(FICHIER3).h
 	$(CC) -c $(FICHIER3).cpp $(CFLAGS)
-
-$(FICHIER4).o : $(FICHIER4).cpp $(FICHIER4).h
-	$(CC) -c $(FICHIER4).cpp $(CFLAGS)
 
 $(FICHIER5).o : $(FICHIER5).cpp $(FICHIER5).h
 	$(CC) -c $(FICHIER5).cpp $(CFLAGS)
