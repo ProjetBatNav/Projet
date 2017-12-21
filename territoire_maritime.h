@@ -3,21 +3,24 @@
 
 #include "fenetre_de_jeu.h"
 #include "window.h"
+#include "cellule.h"
 
 class terrM
 {
  private:
- 	int m_hauteur, m_largeur, m_startX, m_startY;
- 	Color m_colorWin, m_colorFrame;
-  	fntJeu m_terr;
+ 	int m_startX, m_startY;
+ 	Color m_colorTerrM;
+  	Cellule T[20][20];
 public:
-	terrM(int h, int l, int x, int y);
+	terrM(WINDOW* Win);
 	~terrM();
 
-	WINDOW* getWindowWinTerr() const;
-	Color getCouleurFenetreTerr() const;
+	// WINDOW* getWindowWinTerr() const;
+	// Color getCouleurFenetreTerr() const;
 
-	void setCouleurFenetreTerr(Color c);
-	void setCouleurBordureTerr(Color c);
+	// void setCouleurFenetreTerr(Color c);
+	// void setCouleurBordureTerr(Color c);
+
+	void print(WINDOW* Win) const;
 };
 #endif

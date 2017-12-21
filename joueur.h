@@ -18,7 +18,7 @@ public:
 	std::string getPseudo();
 
 	// void mvNav(WINDOW* Win, Navire &nom, int ch, std::string mode, Color c);
-	// void selectNav(WINDOW* Win, Navire &nom1, Navire &nom2, Navire &nom3, Navire &nom4, Navire &nom5);
+	void selectNav(int ch);
 	void lancerMiss();
 	
 };

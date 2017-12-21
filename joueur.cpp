@@ -100,11 +100,18 @@ std::string Joueur::getPseudo(){
 	
 // }
 
-// void selectNav(fntJeu flotte, int ch, Navire &nom1, Navire &nom2, Navire &nom3, Navire &nom4, Navire &nom5){
-// 	if
-// 	switch(ch){
-// 		case KEY_RIGHT :
-
+// void Joueur::selectNav(int ch){
+// 	int i = 0;
+// 	while(ch != '\n'){
+// 		while(ch != KEY_RIGHT || ch != KEY_LEFT){
+// 		T[i].setNavColor(BWHITE);
+// 		sleep(1);
+// 		T[i].setNavColor(T[i].getNavColor());
+// 		}
+// 		switch(ch){
+// 			case KEY_RIGHT :
+// 				sleep(1);
+// 		}
 // 	}
 // }
 
