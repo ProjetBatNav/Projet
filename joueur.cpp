@@ -26,7 +26,7 @@ std::string Joueur::getPseudo(){
 // 	switch(ch){
 // 		case KEY_UP :
 // 			if(mode == "10x10"){
-// 				nom.printNav(Win,nom.getStartX(),nom.getStartY(),c);
+// 				nom.print(Win,nom.getStartX(),nom.getStartY(),c);
 // 				nom.setStartY(nom.getStartY()-1);
 // 				nom.printNav(Win,nom.getStartX(),nom.getStartY(),nom.getNavColor());
 // 			}
@@ -100,20 +100,32 @@ std::string Joueur::getPseudo(){
 	
 // }
 
-// void Joueur::selectNav(int ch){
-// 	int i = 0;
-// 	while(ch != '\n'){
-// 		while(ch != KEY_RIGHT || ch != KEY_LEFT){
-// 		T[i].setNavColor(BWHITE);
-// 		sleep(1);
-// 		T[i].setNavColor(T[i].getNavColor());
-// 		}
-// 		switch(ch){
-// 			case KEY_RIGHT :
-// 				sleep(1);
-// 		}
-// 	}
-// }
+void Joueur::selectNav(int ch){
+	int i = 0;
+	while(ch != '\n'){
+		while(ch != KEY_RIGHT || ch != KEY_LEFT){
+			T[i].setNavColor(BWHITE);
+			sleep(1);
+			T[i].setNavColor(T[i].getNavColor());
+		}
+		switch(ch){
+			case KEY_RIGHT :
+				if (i < 4)
+				{
+					i++;
+				}
+				i = 0;
+			break;
+			case KEY_LEFT :
+				if (i > 0)
+				{
+					i--;
+				}
+				i = 4;
+			break;
+		}
+	}
+}
 
 // bool appartientFntJeu(fntJeu flotte, Navire nom){
 // 	return nom.getStartX() >= flotte.getStartX() && nom.getStartY() >= flotte
