@@ -1,36 +1,52 @@
 #ifndef NAVIRE_H
 #define NAVIRE_H
 
-#include "window.h"
-#include "cellule.h"
+#include "territoire_maritime.h"
+#include <unistd.h>
 
 class Navire
 {
 private:
-	int m_startX, m_startY;
-	char m_spr;
+	int m_startX, m_startY, m_taille;
+	WINDOW* m_win;
 	std::string m_nom;
 	Color m_navColor;
-	Cellule T[5][5];
+	Cellule* T;
 
 public:
+	//Constructeurs
 	Navire();
-	Navire(std::string nom, int x, int y, Color c);
+	Navire(std::string nom, int x, int y, WINDOW* Win);
+	Navire(std::string nom, int x, int y, WINDOW* Win, Color c);
+
+	//Destructeurs
 	~Navire();
 
+	//Accesseurs en lecture
 	int getStartX() const;
 	int getStartY() const;
+	int getTaille() const;
+	WINDOW* getWin() const;
 	std::string getNom() const;
 	Color getNavColor() const;
 
+	//Accesseurs en ecriture
 	void setStartX(int x);
 	void setStartY(int y);
+	void setX(int x);
+	void setY(int y);
+	void setTaille(int taille);
+	void setWin(WINDOW* Win);
 	void setNom(std::string nom);
 	void setNavColor(Color c);
 
-  	void print(WINDOW* Win) const;
+	bool operator==(const Navire &n) const;
+	bool operator!=(const Navire &n) const;
+  	void print() const;
+  	void effacer(terrM jeu);
   	void defautNavire();
-  	// void printNav(WINDOW* Win, int x, int y, Color c) const;
-  	// void mvNav(WINDOW* Win, int ch, std::string mode, Color c);
+	void initNav(int x, int y, WINDOW* Win);
+  	void clignot();
+  	void deplacer(terrM jeu);
 };
 #endif

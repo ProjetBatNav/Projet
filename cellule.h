@@ -1,7 +1,6 @@
 #ifndef __CELLULE_H
 #define __CELLULE_H
 
-#include <string>
 #include "window.h"
 
 class Cellule {
@@ -16,6 +15,9 @@ class Cellule {
   // Constructeurs
   Cellule(); // morte par défaut
   Cellule(bool touche, unsigned int x, unsigned int y, Color c);
+
+  //Destructeur
+  ~Cellule();
 
   // Accesseurs en lecture
   bool getTouche() const;

@@ -1,19 +1,21 @@
 #include "joueur.h"
 
-Joueur::Joueur(std::string pseudo, int defaut)
-: m_pseudo(pseudo), m_defaut(defaut){
+Joueur::Joueur(std::string pseudo, WINDOW* Win, int defaut)
+: m_pseudo(pseudo), m_win(Win), m_defaut(defaut){
 	T[0].setNom("destroyer");
 	T[1].setNom("croiseur");
 	T[2].setNom("contreTorpilleur");
 	T[3].setNom("sousMarin");
 	T[4].setNom("torpilleur");
-	
+
 	if(defaut){
 		for (int i = 0; i < 5; ++i)
 		{
 			T[i].defautNavire();
+			T[i].initNav(4+10*i,0,m_win);
+			print(i);
 		}
-	}
+	}	
 }
 
 Joueur::~Joueur(){}
@@ -22,111 +24,176 @@ std::string Joueur::getPseudo(){
 	return m_pseudo;
 }
 
-// void Joueur::mvNav(WINDOW* Win, Navire &nom, int ch, std::string mode, Color c){
-// 	switch(ch){
-// 		case KEY_UP :
-// 			if(mode == "10x10"){
-// 				nom.print(Win,nom.getStartX(),nom.getStartY(),c);
-// 				nom.setStartY(nom.getStartY()-1);
-// 				nom.printNav(Win,nom.getStartX(),nom.getStartY(),nom.getNavColor());
-// 			}
-// 			else
-// 			{
-// 				nom.printNav(Win,nom.getStartX(),nom.getStartY(),c);
-// 				nom.setStartY(nom.getStartY()-2);
-// 				nom.printNav(Win,nom.getStartX(),nom.getStartY(),nom.getNavColor());
-// 			}
-// 		break;
-// 		case KEY_DOWN :
-// 			if(mode == "10x10"){
-// 				nom.printNav(Win,nom.getStartX(),nom.getStartY(),c);
-// 				nom.setStartY(nom.getStartY()+1);
-// 				nom.printNav(Win,nom.getStartX(),nom.getStartY(),nom.getNavColor());
-// 			}
-// 			else
-// 			{
-// 				nom.printNav(Win,nom.getStartX(),nom.getStartY(),c);
-// 				nom.setStartY(nom.getStartY()+2);
-// 				nom.printNav(Win,nom.getStartX(),nom.getStartY(),nom.getNavColor());
-// 			}
-// 		break;
-// 		case KEY_LEFT :
-// 			if(mode == "10x10"){
-// 				nom.printNav(Win,nom.getStartX(),nom.getStartY(),c);
-// 				nom.setStartX(nom.getStartX()-2);
-// 				nom.printNav(Win,nom.getStartX(),nom.getStartY(),nom.getNavColor());
-// 			}
-// 			else
-// 			{
-// 				nom.printNav(Win,nom.getStartX(),nom.getStartY(),c);
-// 				nom.setStartX(nom.getStartX()-4);
-// 				nom.printNav(Win,nom.getStartX(),nom.getStartY(),nom.getNavColor());
-// 			}
-// 		break;
-// 		case KEY_RIGHT :
-// 			if(mode == "10x10"){
-// 				nom.printNav(Win,nom.getStartX(),nom.getStartY(),c);
-// 				nom.setStartX(nom.getStartX()+2);
-// 				nom.printNav(Win,nom.getStartX(),nom.getStartY(),nom.getNavColor());
-// 			}
-// 			else
-// 			{
-// 				nom.printNav(Win,nom.getStartX(),nom.getStartY(),c);
-// 				nom.setStartX(nom.getStartX()+4);
-// 				nom.printNav(Win,nom.getStartX(),nom.getStartY(),nom.getNavColor());
-// 			}
-// 		break;
-// 		case 32 :
-// 			if(nom.getLargeur() > nom.getHauteur()){
-// 				nom.printNav(Win,nom.getStartX(),nom.getStartY(),c);
-// 				int largeur = nom.getLargeur();
-// 				nom.setLargeur(2*nom.getHauteur());
-// 				nom.setHauteur(largeur/2);
-// 				nom.setStartX(nom.getStartX()+(nom.getHauteur()/2*2));
-// 				nom.setStartY(nom.getStartY()-(nom.getHauteur()/2));
-// 				nom.printNav(Win,nom.getStartX(),nom.getStartY(),nom.getNavColor());		
-// 			}
-// 			else{
-// 				nom.printNav(Win,nom.getStartX(),nom.getStartY(),c);
-// 				int largeur = nom.getLargeur(), hauteur = nom.getHauteur();
-// 				nom.setLargeur(2*nom.getHauteur());
-// 				nom.setHauteur(largeur/2);
-// 				nom.setStartX(nom.getStartX()-(hauteur/2*2));
-// 				nom.setStartY(nom.getStartY()+(hauteur/2));
-// 				nom.printNav(Win,nom.getStartX(),nom.getStartY(),nom.getNavColor());
-// 			}
-// 		break;
-// 	}
-	
-// }
+void Joueur::print(int i) const{
+	T[i].print();
+}
 
-void Joueur::selectNav(int ch){
-	int i = 0;
-	while(ch != '\n'){
-		while(ch != KEY_RIGHT || ch != KEY_LEFT){
-			T[i].setNavColor(BWHITE);
-			sleep(1);
-			T[i].setNavColor(T[i].getNavColor());
-		}
+void Joueur::mvNav(int i, terrM jeu){
+	int ch;
+	while((ch = getch()) != '\n'){
+		int j = 0;
 		switch(ch){
-			case KEY_RIGHT :
-				if (i < 4)
+			case KEY_UP :			
+				// T[i].effacer(jeu);
+				// T[i].setY(T[i].getStartY()-1);
+				if (j == i)
 				{
-					i++;
+					j++; 
 				}
-				i = 0;
+				while(j < 4 && (T[i] != T[j] || T[j].getWin() != jeu.getWin()))
+				{
+					if (j == i-1 && j < 3)
+					{
+						j+=2; 
+					}
+					else{
+						j++;
+					}
+				}
+				T[i].effacer(jeu);
+				T[i].setY(T[i].getStartY()-1);				
+				// while(T[i] == T[j] && T[j].getWin() == jeu.getWin()){
+				// 	T[i].setY(T[i].getStartY()-1);
+				// }
+				print(j);
+				print(i);
+			break;
+			case KEY_DOWN :
+				// T[i].effacer(jeu);
+				// T[i].setY(T[i].getStartY()+1);
+				if (j == i)
+				{
+					j++; 
+				}
+				while(j < 4 && (T[i] != T[j] || T[j].getWin() != jeu.getWin()))
+				{
+					if (j == i-1 && j < 3)
+					{
+						j+=2; 
+					}
+					else{
+						j++;
+					}
+				}
+				T[i].effacer(jeu);
+				T[i].setY(T[i].getStartY()+1);
+				// while(T[i] == T[j] && T[j].getWin() == jeu.getWin()){
+				// 	T[i].setY(T[i].getStartY()+1);
+				// }
+				print(j);
+				print(i);
 			break;
 			case KEY_LEFT :
-				if (i > 0)
+				// T[i].effacer(jeu);
+				// T[i].setX(T[i].getStartX()-2);
+				if (j == i)
 				{
-					i--;
+					j++; 
 				}
-				i = 4;
+				while(j < 4 && (T[i] != T[j] || T[j].getWin() != jeu.getWin()))
+				{
+					if (j == i-1 && j < 3)
+					{
+						j+=2; 
+					}
+					else{
+						j++;
+					}
+				}
+				T[i].effacer(jeu);
+				T[i].setX(T[i].getStartX()-2);
+				// while(T[i] == T[j] && T[j].getWin() == jeu.getWin()){
+				// 	T[i].setX(T[i].getStartX()-2);
+				// }
+				print(j);
+				print(i);
+			break;
+			case KEY_RIGHT :
+				// T[i].effacer(jeu);
+				// T[i].setX(T[i].getStartX()+2);
+				if (j == i)
+				{
+					j++; 
+				}
+				while(j < 4 && (T[i] != T[j] || T[j].getWin() != jeu.getWin()))
+				{
+					if (j == i-1 && j < 3)
+					{
+						j+=2; 
+					}
+					else{
+						j++;
+					}
+				}
+				T[i].effacer(jeu);
+				T[i].setX(T[i].getStartX()+2);
+				// while(T[i] == T[j] && T[j].getWin() == jeu.getWin()){
+				// 	T[i].setX(T[i].getStartX()+2);
+				// }
+				print(j);
+				print(i);
 			break;
 		}
 	}
 }
 
-// bool appartientFntJeu(fntJeu flotte, Navire nom){
-// 	return nom.getStartX() >= flotte.getStartX() && nom.getStartY() >= flotte
-// }
+void Joueur::selectNav(terrM jeu){
+	int ch, i = 0;
+	while(T[i].getWin() != m_win){
+		i++;
+	}
+	while(T[i].getWin() == m_win){
+		while(ch != '\n'){
+			while(((ch = getch()) != KEY_RIGHT) && (ch != KEY_LEFT) && (ch != '\n')){
+				T[i].clignot();
+			}
+			switch(ch){
+				case KEY_RIGHT :
+					if ((i < 4) && (T[i].getWin() == m_win))
+					{
+						i++;
+					}
+					else{
+						i = 0;
+					}
+					while((i < 4) && (T[i].getWin() != m_win)){
+						i++;
+					}
+					if((i == 4) && (T[i].getWin() != m_win)){
+						i = 0;
+						while((i < 4) && (T[i].getWin() != m_win)){
+							i++;
+						}
+					}
+				break;
+				case KEY_LEFT :
+					if ((i > 0) && (T[i].getWin() == m_win))
+					{
+						i--;
+					}
+					else{
+						i = 4;
+					}
+					while((i > 0) && (T[i].getWin() != m_win)){
+						i--;
+					}
+					if((i == 0) && (T[i].getWin() != m_win)){
+						i = 4;
+						while((i > 0) && (T[i].getWin() != m_win)){
+							i--;
+						}
+					}
+				break;
+			}
+		}
+		T[i].deplacer(jeu);
+		mvNav(i,jeu);
+		i = 0;
+		ch = 0; 
+		while((i < 4) && (T[i].getWin() != m_win)){
+		i++;
+		}
+	}
+	
+}
+

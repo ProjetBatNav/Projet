@@ -1,7 +1,7 @@
 #include "territoire_maritime.h"
 
 terrM::terrM(WINDOW* Win)
-: m_startX(0), m_startY(0){
+: m_startX(0), m_startY(0), m_win(Win){
 	m_colorTerrM = BBLUE;
 	for(int i = 0; i < 20; i++){
 		for(int j = 0; j < 20; j++)
@@ -16,17 +16,24 @@ terrM::terrM(WINDOW* Win)
 
 terrM::~terrM(){}
 
-// WINDOW* terrM::getWindowWinTerr() const{
-//   return m_terr.getWindowWinFnt();
-// }
+WINDOW* terrM::getWin() const{
+  return m_win;
+}
 
-// Color terrM::getCouleurFenetreTerr() const{
-// 	return m_terr.getCouleurFenetreFnt();
-// }
+int terrM::getXAt(int i) const{
+	return T[i][0].getX();
+}
+int terrM::getYAt(int j) const{
+	return T[0][j].getY();
+}
+Color terrM::getCouleur() const{
+	return m_colorTerrM;
+}
 
-// void terrM::setCouleurFenetreTerr(Color c){
-// 	m_terr.setCouleurFenetreFnt(c);
-// }
+void terrM::setCouleurAt(int i, int j, Color c){
+	T[i][j].setCouleur(c);
+	print(m_win);
+}
 
 // void terrM::setCouleurBordureTerr(Color c){
 // 	m_terr.setCouleurBordureFnt(c);

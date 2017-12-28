@@ -8,6 +8,7 @@
 // Ensemble de couleurs possibles (fond+texte)
 enum Color {
   WBLACK,  // couleur fond = noir ,   couleur texte = blanc
+  WGREY,
   WCYAN,   // couleur fond = cyan,    couleur texte = blanc
   WBLUE,   // couleur fond = bleu,    couleur texte = blanc
   WYELLOW, // couleur fond = jaune,   couleur texte = blanc

@@ -10,6 +10,8 @@ Cellule::Cellule(bool touche, unsigned int x, unsigned int y, Color c):
   m_touche(touche ? 1 : 0), m_spr("  "), m_startX(x), m_startY(y), m_couleur(c) {
 }
 
+Cellule::~Cellule(){}
+
 bool Cellule::getTouche() const {
   return m_touche;
 }
