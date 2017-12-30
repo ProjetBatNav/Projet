@@ -40,13 +40,19 @@ public:
 	void setNom(std::string nom);
 	void setNavColor(Color c);
 
+	bool horsLimiteJeu(const terrM &jeu) const;
+	bool estMemeWin(const Navire &n) const;
+	bool estEquivalent(const Navire &n) const;
 	bool operator==(const Navire &n) const;
 	bool operator!=(const Navire &n) const;
+  	
   	void print() const;
-  	void effacer(terrM jeu);
+  	void pivoterD();
+  	void pivoterG();
+  	void effacer();
   	void defautNavire();
 	void initNav(int x, int y, WINDOW* Win);
   	void clignot();
-  	void deplacer(terrM jeu);
+  	void deplacer(const terrM &jeu);
 };
 #endif

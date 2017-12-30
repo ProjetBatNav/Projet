@@ -18,8 +18,9 @@ public:
 
 	void print(int i) const;
 
-	void mvNav(int i, terrM jeu);
-	void selectNav(terrM jeu);
+	void supNav(int i, int ch, const terrM jeu);
+	void mvNav(int i, const terrM &jeu);
+	void selectNav(const terrM &jeu);
 	void lancerMiss();
 	
 };

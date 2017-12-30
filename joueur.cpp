@@ -28,116 +28,149 @@ void Joueur::print(int i) const{
 	T[i].print();
 }
 
-void Joueur::mvNav(int i, terrM jeu){
-	int ch;
-	while((ch = getch()) != '\n'){
-		int j = 0;
-		switch(ch){
-			case KEY_UP :			
-				// T[i].effacer(jeu);
-				// T[i].setY(T[i].getStartY()-1);
-				if (j == i)
+//Empeche les Navires de se superposer
+void Joueur::supNav(int i, int ch, const terrM jeu){
+	int j = 0;
+	if (j == i)
+	{
+		j++; 
+	}
+	while(j < 4 && (T[i] != T[j]))
+	{
+		if (j == i-1 && j < 3)
+		{
+			j+=2; 
+		}
+		else{
+			j++;
+		}
+	}
+	do{
+		if (j != i)
+		{
+			int som = 1;
+			while(T[i] == T[j]){
+				if (ch == KEY_UP)
 				{
-					j++; 
-				}
-				while(j < 4 && (T[i] != T[j] || T[j].getWin() != jeu.getWin()))
-				{
-					if (j == i-1 && j < 3)
+					T[i].setY(T[i].getStartY()-1);
+					if (T[i].horsLimiteJeu(jeu))
 					{
-						j+=2; 
-					}
-					else{
-						j++;
+						som++;
+						T[i].setY(T[i].getStartY()+som);
 					}
 				}
-				T[i].effacer(jeu);
-				T[i].setY(T[i].getStartY()-1);				
-				// while(T[i] == T[j] && T[j].getWin() == jeu.getWin()){
-				// 	T[i].setY(T[i].getStartY()-1);
-				// }
-				print(j);
-				print(i);
+				else if (ch == KEY_DOWN)
+				{
+					T[i].setY(T[i].getStartY()+1);
+					if (T[i].horsLimiteJeu(jeu))
+					{
+						T[i].setY(T[i].getStartY()-som);
+					}	
+				}
+				else if (ch == KEY_LEFT)
+				{
+					T[i].setX(T[i].getStartX()-2);
+					if (T[i].horsLimiteJeu(jeu))
+					{
+						T[i].setX(T[i].getStartX()+som*2);
+					}
+				}
+				else if (ch == KEY_RIGHT)
+				{
+					T[i].setX(T[i].getStartX()+2);
+					if (T[i].horsLimiteJeu(jeu))
+					{
+						T[i].setX(T[i].getStartX()-som*2);
+					}
+				}
+				else if (ch == 32)
+				{
+					T[i].pivoterG();
+				}
+				else
+				{
+					T[i].effacer();
+					T[i].setX(T[i].getStartX()+2);
+				}
+				som++;
+			}
+			print(j);
+		}
+		j = 0;
+		if (j == i)
+		{
+			j++; 
+		}
+		while(j < 4 && (T[i] != T[j]))
+		{
+			if (j == i-1 && j < 3)
+			{
+				j+=2; 
+			}
+			else{
+				j++;
+			}
+		}
+	}while(T[i] == T[j] && j != i);
+	print(i);
+}
+
+//Permet de bouger les Navires
+void Joueur::mvNav(int i, const terrM &jeu){
+	int ch;
+	supNav(i,ch,jeu);
+	while((ch = getch()) != '\n'){
+		switch(ch){
+			case KEY_UP :
+				T[i].effacer();
+				T[i].setY(T[i].getStartY()-1);
+				if (T[i].horsLimiteJeu(jeu))
+				{
+					T[i].setY(T[i].getStartY()+1);
+				}
+				supNav(i,ch,jeu);
 			break;
 			case KEY_DOWN :
-				// T[i].effacer(jeu);
-				// T[i].setY(T[i].getStartY()+1);
-				if (j == i)
-				{
-					j++; 
-				}
-				while(j < 4 && (T[i] != T[j] || T[j].getWin() != jeu.getWin()))
-				{
-					if (j == i-1 && j < 3)
-					{
-						j+=2; 
-					}
-					else{
-						j++;
-					}
-				}
-				T[i].effacer(jeu);
+				T[i].effacer();
 				T[i].setY(T[i].getStartY()+1);
-				// while(T[i] == T[j] && T[j].getWin() == jeu.getWin()){
-				// 	T[i].setY(T[i].getStartY()+1);
-				// }
-				print(j);
-				print(i);
+				if (T[i].horsLimiteJeu(jeu))
+				{
+					T[i].setY(T[i].getStartY()-1);
+				}
+				supNav(i,ch,jeu);
 			break;
 			case KEY_LEFT :
-				// T[i].effacer(jeu);
-				// T[i].setX(T[i].getStartX()-2);
-				if (j == i)
-				{
-					j++; 
-				}
-				while(j < 4 && (T[i] != T[j] || T[j].getWin() != jeu.getWin()))
-				{
-					if (j == i-1 && j < 3)
-					{
-						j+=2; 
-					}
-					else{
-						j++;
-					}
-				}
-				T[i].effacer(jeu);
+				T[i].effacer();
 				T[i].setX(T[i].getStartX()-2);
-				// while(T[i] == T[j] && T[j].getWin() == jeu.getWin()){
-				// 	T[i].setX(T[i].getStartX()-2);
-				// }
-				print(j);
-				print(i);
+				if (T[i].horsLimiteJeu(jeu))
+				{
+					T[i].setX(T[i].getStartX()+2);
+				}
+				supNav(i,ch,jeu);
 			break;
 			case KEY_RIGHT :
-				// T[i].effacer(jeu);
-				// T[i].setX(T[i].getStartX()+2);
-				if (j == i)
-				{
-					j++; 
-				}
-				while(j < 4 && (T[i] != T[j] || T[j].getWin() != jeu.getWin()))
-				{
-					if (j == i-1 && j < 3)
-					{
-						j+=2; 
-					}
-					else{
-						j++;
-					}
-				}
-				T[i].effacer(jeu);
+				T[i].effacer();
 				T[i].setX(T[i].getStartX()+2);
-				// while(T[i] == T[j] && T[j].getWin() == jeu.getWin()){
-				// 	T[i].setX(T[i].getStartX()+2);
-				// }
-				print(j);
-				print(i);
+				if (T[i].horsLimiteJeu(jeu))
+				{
+					T[i].setX(T[i].getStartX()-2);
+				}
+				supNav(i,ch,jeu);
+			break;
+			case 32 :
+				T[i].effacer();
+				T[i].pivoterD();
+				if (T[i].horsLimiteJeu(jeu))
+				{
+					T[i].pivoterG();
+				}
+				supNav(i,ch,jeu);
 			break;
 		}
 	}
 }
 
-void Joueur::selectNav(terrM jeu){
+void Joueur::selectNav(const terrM &jeu){
 	int ch, i = 0;
 	while(T[i].getWin() != m_win){
 		i++;

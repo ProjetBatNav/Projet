@@ -125,19 +125,42 @@ void Navire::setNavColor(Color c){
 	}
 	m_navColor = c;
 }
-
-bool Navire::operator==(const Navire &n) const{
-	for (int i = 0; i < m_taille; i++)
+bool Navire::horsLimiteJeu(const terrM &jeu) const{
+	for (int i = 0; i < m_taille; ++i)
 	{
-		int j = 0;
-		while(T[i] != n.T[j] && j < n.m_taille){
-			j++;
-		}
-		if (T[i] == n.T[j])
+		if (T[i].getX() < jeu.getXAt(0) || T[i].getX() > jeu.getXAt(19) || T[i].getY() < jeu.getYAt(0) || T[i].getY() > jeu.getYAt(19))
 		{
 			return true;
 		}
 	}
+	return false;
+}
+bool Navire::estMemeWin(const Navire &n) const{
+	return m_win == n.m_win;
+}
+bool Navire::estEquivalent(const Navire &n) const{
+	for (int i = 0; i < m_taille; i++){
+		int j = 0;
+		while((T[i].estDifferente(n.T[j]) || !estMemeWin(n)) && j < n.m_taille){
+			j++;
+		}
+		if (T[i].estEquivalente(n.T[j]) && estMemeWin(n)){
+			return true;
+		}
+	}
+	return false;
+}
+bool Navire::operator==(const Navire &n) const{
+	for (int i = 0; i < m_taille; i++){
+		int j = 0;
+		while((T[i] != n.T[j] || !estMemeWin(n)) && j < n.m_taille){
+			j++;
+		}
+		if (T[i] == n.T[j] && estMemeWin(n)){
+			return true;
+		}
+	}
+	return false;
 }
 bool Navire::operator!=(const Navire &n) const{
 	return !operator==(n);
@@ -149,9 +172,54 @@ void Navire::print() const{
 		T[i].print(m_win);
 	}
 }
-void Navire::effacer(terrM jeu){
+void Navire::pivoterD(){
+	for (int i = 1; i < m_taille; ++i)
+	{
+		// if (ph = 15)
+		// {
+		// 	if (T[0].getX() == T[i].getX())
+		// 	{
+		// 		T[i].setX(T[i].getX()-2*(T[0].getY()-T[i].getY()));
+		// 		T[i].setY(T[0].getY());
+		// 	}
+		// 	else if (T[0].getY() == T[i].getY())
+		// 	{
+		// 		T[i].setY(T[i].getY()-((T[i].getX()-T[0].getX())/2));
+		// 		T[i].setX(T[0].getX());
+		// 	}
+		// }
+		// else{
+			if (T[0].getX() == T[i].getX())
+			{
+				T[i].setX(T[i].getX()+2*(T[0].getY()-T[i].getY()));
+				T[i].setY(T[0].getY());
+			}
+			else if (T[0].getY() == T[i].getY())
+			{
+				T[i].setY(T[i].getY()+((T[i].getX()-T[0].getX())/2));
+				T[i].setX(T[0].getX());
+			}
+		// }
+	}
+}
+void Navire::pivoterG(){
+	for (int i = 1; i < m_taille; ++i)
+	{
+		if (T[0].getX() == T[i].getX())
+		{
+			T[i].setX(T[i].getX()-2*(T[0].getY()-T[i].getY()));
+			T[i].setY(T[0].getY());
+		}
+		else if (T[0].getY() == T[i].getY())
+		{
+			T[i].setY(T[i].getY()-((T[i].getX()-T[0].getX())/2));
+			T[i].setX(T[0].getX());
+		}
+	}
+}
+void Navire::effacer(){
 	Color C = m_navColor;
-	setNavColor(jeu.getCouleur());
+	setNavColor(BBLUE);
 	for (int i = 0; i < m_taille; i++)
 	{
 		T[i].print(m_win);
@@ -223,8 +291,8 @@ void Navire::clignot(){
 	usleep(200500);
 }
 
-void Navire::deplacer(terrM jeu){
-	effacer(jeu);
+void Navire::deplacer(const terrM &jeu){
+	effacer();
 	initNav(-m_startX,-m_startY,jeu.getWin());
 	setX(jeu.getXAt(8));
 	setY(jeu.getYAt(8));

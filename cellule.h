@@ -7,32 +7,32 @@ class Cellule {
  private:
   size_t m_touche;
   std::string m_spr;
-  unsigned int m_startX, m_startY;
+  int m_startX, m_startY;
   Color m_couleur;
 
  public:
 
   // Constructeurs
   Cellule(); // morte par défaut
-  Cellule(bool touche, unsigned int x, unsigned int y, Color c);
+  Cellule(bool touche, int x, int y, Color c);
 
   //Destructeur
   ~Cellule();
 
   // Accesseurs en lecture
   bool getTouche() const;
-  unsigned int getX() const;
-  unsigned int getY() const;
+  int getX() const;
+  int getY() const;
   Color getCouleur() const;
 
   // Accesseurs en écriture
-  void setX(unsigned int x);
-  void setY(unsigned int y);
+  void setX(int x);
+  void setY(int y);
   void setTouche(bool touche);
   void setCouleur(Color couleur);
 
   // renvoie vrai si la cellule courante est vivante et est voisine de c
-  bool estVoisine(const Cellule &c) const;
+  bool estVoisineH(const Cellule &c) const;
   // affiche la cellule
   void print(WINDOW* Win) const;
 

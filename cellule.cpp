@@ -6,7 +6,7 @@ using namespace std;
 Cellule::Cellule(): m_touche(0), m_spr("  "), m_startX(0), m_startY(0), m_couleur(WBLACK) {
 }
 
-Cellule::Cellule(bool touche, unsigned int x, unsigned int y, Color c):
+Cellule::Cellule(bool touche, int x, int y, Color c):
   m_touche(touche ? 1 : 0), m_spr("  "), m_startX(x), m_startY(y), m_couleur(c) {
 }
 
@@ -16,11 +16,11 @@ bool Cellule::getTouche() const {
   return m_touche;
 }
 
-unsigned int Cellule::getX() const {
+int Cellule::getX() const {
   return m_startX;
 }
 
-unsigned int Cellule::getY() const {
+int Cellule::getY() const {
   return m_startY;
 }
 
@@ -29,11 +29,11 @@ Color Cellule::getCouleur() const {
 }
 
 // Accesseurs en écriture
-void Cellule::setX(unsigned int x) {
+void Cellule::setX(int x) {
   m_startX = x;
 }
 
-void Cellule::setY(unsigned int y) {
+void Cellule::setY(int y) {
   m_startY = y;
 }
 
@@ -41,9 +41,8 @@ void Cellule::setCouleur(Color couleur){
 	m_couleur = couleur;
 }
 
-bool Cellule::estVoisine(const Cellule &c) const {
-  return m_touche &&
-    ((m_startX - c.m_startX) * (m_startX - c.m_startX) + (m_startY - c.m_startY) * (m_startY - c.m_startY) <= 2);
+bool Cellule::estVoisineH(const Cellule &c) const {
+  return (m_startY - c.m_startY) * (m_startY - c.m_startY) < 2;
 }
 
 void Cellule::print(WINDOW* Win) const {

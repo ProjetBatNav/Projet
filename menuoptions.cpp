@@ -5,5 +5,5 @@ void Options(std::string &mode){
 
 	Menu tailleTerrM(h,w,COLS/3,0,"Mode Territoire Maritime");
 
-	while(ch = getch() != '\n'){}
+	while((ch = getch()) != '\n'){}
 }
