@@ -11,6 +11,7 @@ private:
 	int m_defaut;
 	Navire T[5];
 public:
+	Joueur();
 	Joueur(std::string pseudo, WINDOW* Win, int defaut = 1);
 	~Joueur();
 	

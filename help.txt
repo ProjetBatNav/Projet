@@ -1,0 +1,4 @@
+
+Bonjour et bienvenue
+Voici les commandes que vous pouvez effectuer :
+

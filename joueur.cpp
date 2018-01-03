@@ -1,5 +1,22 @@
 #include "joueur.h"
 
+Joueur::Joueur()
+: m_pseudo(""), m_win(NULL), m_defaut(1){
+	T[0].setNom("destroyer");
+	T[1].setNom("croiseur");
+	T[2].setNom("contreTorpilleur");
+	T[3].setNom("sousMarin");
+	T[4].setNom("torpilleur");
+
+	if(m_defaut){
+		for (int i = 0; i < 5; ++i)
+		{
+			T[i].defautNavire();
+			T[i].initNav(4+10*i,0,m_win);
+			print(i);
+		}
+	}
+}
 Joueur::Joueur(std::string pseudo, WINDOW* Win, int defaut)
 : m_pseudo(pseudo), m_win(Win), m_defaut(defaut){
 	T[0].setNom("destroyer");
@@ -8,7 +25,7 @@ Joueur::Joueur(std::string pseudo, WINDOW* Win, int defaut)
 	T[3].setNom("sousMarin");
 	T[4].setNom("torpilleur");
 
-	if(defaut){
+	if(m_defaut){
 		for (int i = 0; i < 5; ++i)
 		{
 			T[i].defautNavire();
@@ -172,9 +189,6 @@ void Joueur::mvNav(int i, const terrM &jeu){
 
 void Joueur::selectNav(const terrM &jeu){
 	int ch, i = 0;
-	while(T[i].getWin() != m_win){
-		i++;
-	}
 	while(T[i].getWin() == m_win){
 		while(ch != '\n'){
 			while(((ch = getch()) != KEY_RIGHT) && (ch != KEY_LEFT) && (ch != '\n')){
