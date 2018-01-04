@@ -15,7 +15,11 @@ public:
 	Joueur(std::string pseudo, WINDOW* Win, int defaut = 1);
 	~Joueur();
 	
-	std::string getPseudo();
+	std::string getPseudo() const;
+	WINDOW* getWin() const;
+
+	void setPseudo(std::string pseudo);
+	void setWin(WINDOW* Win);
 
 	void print(int i) const;
 

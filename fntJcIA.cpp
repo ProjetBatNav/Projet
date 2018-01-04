@@ -14,6 +14,7 @@ void jeuJcIA(std::string &mode){
 	Menu titreJoueur(3,30,15,1,"Votre Territoire");
   Menu titreIA(3,30,116,1,"Territoire Adverse");
 
+  IA IA(terrIA);
   Joueur J1("Guidyous",flotte.getWindowWinFnt());
 
   Message Messombre(5,100,62,36);

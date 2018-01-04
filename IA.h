@@ -9,7 +9,7 @@ class IA
 	Joueur IA;
 
 	public:
-		IA();
+		IA(terrM jeu);
 		~IA();
 	
 };

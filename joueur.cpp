@@ -12,8 +12,6 @@ Joueur::Joueur()
 		for (int i = 0; i < 5; ++i)
 		{
 			T[i].defautNavire();
-			T[i].initNav(4+10*i,0,m_win);
-			print(i);
 		}
 	}
 }
@@ -39,6 +37,16 @@ Joueur::~Joueur(){}
 
 std::string Joueur::getPseudo(){
 	return m_pseudo;
+}
+WINDOW* Joueur::getWin() const{
+	return m_win;
+}
+
+void Joueur::setPseudo(std::string pseudo){
+	m_pseudo = pseudo;
+}
+void Joueur::setWin(WINDOW* Win){
+	m_win = Win;
 }
 
 void Joueur::print(int i) const{
